@@ -1,0 +1,29 @@
+[project]
+name = "maze"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "AlirezaH3mt", email = "h3mmatian.alireza@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+maze = "maze:main"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"] # فرمت، ارورها، سورت ایمپورت‌ها و بهینه‌سازی کدهای پایتون
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.10",
+]
