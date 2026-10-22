@@ -1,5 +1,3 @@
-from main_matrix import matrixStructure
-from maze_printer import mazePrinter
 import random as rnd
 
 
@@ -65,14 +63,10 @@ def mazeBacktracking(maze, starting_pos, wall_char):
             taken_steps_list.pop()
 
 
-MATRIX_SIZE = 15
-STARTING_POS = (1, 1)
-WALL_CHAR = "#"
-PLAYER_CHAR = "@"
-
-maze = matrixStructure(
-    matrix_size=MATRIX_SIZE, starting_pos=STARTING_POS, wall_char=WALL_CHAR
-)
-
-mazeBacktracking(maze, starting_pos=STARTING_POS, wall_char=WALL_CHAR)
-mazePrinter(maze)
+def goalPositionAdder(maze, matrix_size, goal_char):
+    isGoalSet = False
+    while not isGoalSet:
+        random_goal_pos = rnd.randint(1, matrix_size - 2)
+        if maze[random_goal_pos][matrix_size - 2] == " ":
+            maze[random_goal_pos][matrix_size - 2] = goal_char
+            isGoalSet = True
