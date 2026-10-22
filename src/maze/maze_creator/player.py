@@ -2,21 +2,33 @@ def addPlayer(maze, starting_pos, player_char):
     maze[starting_pos[0]][starting_pos[1]] = player_char
 
 
-def checkPossibleDirections(maze, player_pos):
+def checkPossibleDirections(maze, player_pos, goal_char):
     possible_coords = {}
-    if maze[player_pos[0] - 1][player_pos[1]] == " ":
+    if (
+        maze[player_pos[0] - 1][player_pos[1]] == " "
+        or maze[player_pos[0] - 1][player_pos[1]] == goal_char
+    ):
         possible_coords["Up"] = (player_pos[0] - 1, player_pos[1])
-    if maze[player_pos[0]][player_pos[1] + 1] == " ":
+    if (
+        maze[player_pos[0]][player_pos[1] + 1] == " "
+        or maze[player_pos[0]][player_pos[1] + 1] == goal_char
+    ):
         possible_coords["Right"] = (player_pos[0], player_pos[1] + 1)
-    if maze[player_pos[0] + 1][player_pos[1]] == " ":
+    if (
+        maze[player_pos[0] + 1][player_pos[1]] == " "
+        or maze[player_pos[0] + 1][player_pos[1]] == goal_char
+    ):
         possible_coords["Down"] = (player_pos[0] + 1, player_pos[1])
-    if maze[player_pos[0]][player_pos[1] - 1] == " ":
+    if (
+        maze[player_pos[0]][player_pos[1] - 1] == " "
+        or maze[player_pos[0]][player_pos[1] - 1] == goal_char
+    ):
         possible_coords["Left"] = (player_pos[0], player_pos[1] - 1)
     return possible_coords
 
 
-def movePlayer(maze, player_pos, player_char, player_input):
-    possible_dirs = checkPossibleDirections(maze, player_pos)
+def movePlayer(maze, player_pos, player_char, goal_char, player_input):
+    possible_dirs = checkPossibleDirections(maze, player_pos, goal_char)
 
     if player_input == "w" and "Up" in possible_dirs.keys():
         up = possible_dirs["Up"]
@@ -40,3 +52,8 @@ def movePlayer(maze, player_pos, player_char, player_input):
         player_pos = left
 
     return player_pos
+
+
+def player_win(player_pos, goal_pos):
+    if player_pos == goal_pos:
+        return True
