@@ -65,8 +65,12 @@ def mazeBacktracking(maze, starting_pos, wall_char):
 
 def goalPositionAdder(maze, matrix_size, goal_char):
     isGoalSet = False
+    goal_pos = ()
     while not isGoalSet:
         random_goal_pos = rnd.randint(1, matrix_size - 2)
         if maze[random_goal_pos][matrix_size - 2] == " ":
             maze[random_goal_pos][matrix_size - 2] = goal_char
+            goal_pos = (random_goal_pos, matrix_size - 2)
             isGoalSet = True
+
+    return goal_pos
