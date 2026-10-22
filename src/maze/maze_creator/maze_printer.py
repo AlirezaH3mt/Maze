@@ -1,4 +1,4 @@
-def maze_printer(maze):
+def mazePrinter(maze):
     # Check if maze is valid
     if len(maze) == 0:
         raise ValueError("This matrix does not have proper shape!")
